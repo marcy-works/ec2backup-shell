@@ -18,7 +18,7 @@ create_snapshot() {
     for vol_id in "${volumes[@]}"
     do
         echo "volume-id : ${vol_id}"
-        snapshot_id=$(${AWS_CMD} ec2 create-snapshot --volume-id ${vol_id} --description "Automate backup from ${vol_id}" --output text | awk '{print $8}')
+        snapshot_id=$(${AWS_CMD} ec2 create-snapshot --volume-id ${vol_id} --description "Automate backup from ${vol_id}" --output text | awk '{print $10}')
         if [ $? != 0 ] ; then
             echo "[ERROR] ec2-create-snapshot ${vol_id}"
             exit 1
